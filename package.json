@@ -1,12 +1,12 @@
 {
-  "name": "generator-express-app",
-  "version": "1.0.0",
-  "description": "A generator for Yeoman",
+  "name": "generator-coffee-generator",
+  "version": "0.5.0",
+  "description": "CoffeeScript Generator generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/alexgorbatchev/generator-express-app",
-  "bugs": "https://github.com/alexgorbatchev/generator-express-app/issues",
+  "homepage": "https://github.com/alexgorbatchev/generator-coffee-generator",
+  "bugs": "https://github.com/alexgorbatchev/generator-coffee-generator/issues",
   "author": {
     "name": "Alex Gorbatchev",
     "email": "",
@@ -15,14 +15,17 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexgorbatchev/generator-express-app.git"
+    "url": "git://github.com/alexgorbatchev/generator-coffee-generator.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/*.spec.coffee"
   },
   "dependencies": {
-    "yeoman-generator": "~0.14.0",
-    "coffee-script-redux": "~2.0.0-beta7"
+    "yeoman-generator": ">=0.14.2",
+    "chai": ">=1.8.1",
+    "github": ">=0.1.12",
+    "coffee-errors": ">=0.8.4",
+    "coffee-script": ">=1.6.3"
   },
   "devDependencies": {
     "mocha": "~1.14.0"
