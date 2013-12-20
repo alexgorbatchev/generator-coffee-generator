@@ -1,9 +1,9 @@
 path = require 'path'
 helpers = require('yeoman-generator').test
 
-describe '<%= generatorName %> creation', ->
+describe 'app', ->
   beforeEach (done) ->
-    helpers.testDirectory path.join(__dirname, 'temp'), (err) =>
+    helpers.testDirectory path.join(__dirname, 'app.tmp'), (err) =>
       return done(err) if err
       @app = helpers.createGenerator '<%= generatorName %>:app', ['../../app']
       done()
@@ -14,6 +14,7 @@ describe '<%= generatorName %> creation', ->
     helpers.mockPrompt @app, someOption: true
 
     @app.options['skip-install'] = true
+
     @app.run {}, ->
       helpers.assertFiles expected
       done()

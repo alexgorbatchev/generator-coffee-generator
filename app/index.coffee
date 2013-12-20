@@ -91,7 +91,7 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
   tests: ->
     @mkdir 'test'
     @template 'test/load.spec.coffee', 'test/load.spec.coffee'
-    @template 'test/creation.spec.coffee', 'test/creation.spec.coffee'
+    @template 'test/app.spec.coffee', 'test/app.spec.coffee'
     @template 'test/mocha.opts', 'test/mocha.opts'
 
 module.exports = GeneratorCoffeeGenerator

@@ -3,7 +3,7 @@ helpers = require('yeoman-generator').test
 
 describe 'app', ->
   beforeEach (done) ->
-    helpers.testDirectory path.join(__dirname, 'temp'), (err) =>
+    helpers.testDirectory path.join(__dirname, 'app.tmp'), (err) =>
       return done(err) if err
       @app = helpers.createGenerator 'coffee-generator:app', ['../../app']
       done()

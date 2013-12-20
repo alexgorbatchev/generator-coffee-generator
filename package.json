@@ -9,7 +9,7 @@
   "bugs": "https://github.com/alexgorbatchev/generator-coffee-generator/issues",
   "author": {
     "name": "Alex Gorbatchev",
-    "email": "",
+    "email": "alex.gorbatchev@gmail.com",
     "url": "https://github.com/alexgorbatchev"
   },
   "main": "app/index.js",
@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "yeoman-generator": ">=0.14.2",
-    "chai": ">=1.8.1",
     "github": ">=0.1.12",
     "coffee-errors": ">=0.8.4",
     "coffee-script": ">=1.6.3"
