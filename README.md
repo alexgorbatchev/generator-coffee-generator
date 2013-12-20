@@ -1,6 +1,8 @@
-# generator-coffee-generator [![Gittip](http://img.shields.io/gittip/alexgorbatchev.png)](https://www.gittip.com/alexgorbatchev/) [![Dependency status](https://david-dm.org/alexgorbatchev/generator-coffee-generator.png)](https://david-dm.org/alexgorbatchev/generator-coffee-generator) [![Build Status](https://secure.travis-ci.org/alexgorbatchev/generator-coffee-generator.png?branch=master)](https://travis-ci.org/alexgorbatchev/generator-coffee-generator)
+# generator-coffee-generator [![Gittip](http://img.shields.io/gittip/alexgorbatchev.png)](https://www.gittip.com/alexgorbatchev/)
 
-[Yeoman](http://yeoman.io) generator for Yeoman generators that scaffolds out a new basic Yeoman generator with some sensible defaults written in CoffeeScript. Produced generator allows you to write custom generators in CoffeeScript.
+[Yeoman](http://yeoman.io) generator that scaffolds out a new basic Yeoman generator with some sensible defaults written in CoffeeScript.
+
+[![Dependency status](https://david-dm.org/alexgorbatchev/generator-coffee-generator.png)](https://david-dm.org/alexgorbatchev/generator-coffee-generator) [![Build Status](https://secure.travis-ci.org/alexgorbatchev/generator-coffee-generator.png?branch=master)](https://travis-ci.org/alexgorbatchev/generator-coffee-generator)
 
 ![](http://i.imgur.com/JHaAlBJ.png)
 
