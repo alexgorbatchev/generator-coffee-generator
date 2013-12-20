@@ -1,11 +1,10 @@
 path = require 'path'
 helpers = require('yeoman-generator').test
 
-describe 'express-app creation', ->
+describe 'app', ->
   beforeEach (done) ->
     helpers.testDirectory path.join(__dirname, 'temp'), (err) =>
       return done(err) if err
-
       @app = helpers.createGenerator 'coffee-generator:app', ['../../app']
       done()
 
@@ -17,9 +16,9 @@ describe 'express-app creation', ->
     @app.options['skip-install'] = true
 
     @app.userInfo = ->
-      this.realname = 'Alex Gorbatchev';
-      this.email = 'alex.gorbatchev@world.com';
-      this.githubUrl = 'https://github.com/alexgorbatchev';
+      @realname = 'Alex Gorbatchev';
+      @email = 'alex.gorbatchev@world.com';
+      @githubUrl = 'https://github.com/alexgorbatchev';
 
     helpers.mockPrompt @app,
       githubUser: 'alexgorbatchev'
