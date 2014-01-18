@@ -1,4 +1,10 @@
-# <%= appname %> [![Build Status](https://secure.travis-ci.org/<%= githubUser %>/<%= _.slugify(appname) %>.png?branch=master)](https://travis-ci.org/<%= githubUser %>/<%= _.slugify(appname) %>)
+# <%= appname %>
+
+[![Dependency status](https://david-dm.org/<%= githubUser %>/<%= _.slugify(appname) %>.png)](https://david-dm.org/<%= githubUser %>/<%= _.slugify(appname) %>)
+[![devDependency Status](https://david-dm.org/<%= githubUser %>/<%= _.slugify(appname) %>/dev-status.png)](https://david-dm.org/<%= githubUser %>/<%= _.slugify(appname) %>#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/<%= githubUser %>/<%= _.slugify(appname) %>.png?branch=master)](https://travis-ci.org/<%= githubUser %>/<%= _.slugify(appname) %>)
+
+[![NPM](https://nodei.co/npm/<%= _.slugify(appname) %>.png?downloads=true)](https://npmjs.org/package/<%= _.slugify(appname) %>)
 
 A generator for [Yeoman](http://yeoman.io).
 
