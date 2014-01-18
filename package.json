@@ -1,6 +1,6 @@
 {
   "name": "generator-coffee-generator",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "CoffeeScript Generator generator for Yeoman",
   "keywords": [
     "yeoman-generator",
@@ -27,7 +27,7 @@
     "coffee-script": "~1.6.3"
   },
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "~1.17.0"
   },
   "peerDependencies": {
     "yo": ">=1.0.6"
