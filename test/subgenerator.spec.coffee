@@ -16,5 +16,5 @@ describe 'subgenerator', ->
     @app.options['skip-install'] = true
 
     @app.run {}, ->
-      helpers.assertFiles expected
+      helpers.assertFile expected
       done()
