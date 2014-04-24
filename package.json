@@ -1,6 +1,6 @@
 {
   "name": "generator-coffee-generator",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "CoffeeScript Generator generator for Yeoman",
   "keywords": [
     "yeoman-generator",
