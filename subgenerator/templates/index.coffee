@@ -1,11 +1,22 @@
 util = require 'util'
 yeoman = require 'yeoman-generator'
 
-class <%= _.classify(generatorName) %>Generator extends yeoman.generators.NamedBase
+class <%= _.classify(name) %>Generator extends yeoman.generators.NamedBase
   constructor: (args, options, config) ->
-    console.log "Generating `#{@name}` based on `<%= generatorName %>`."
+    super
+
+    unless @name?
+      @log.error 'You have to provide a name for the subgenerator.'
+      process.exit 1
+
+    console.log "Generating `#{@name}` based on `<%= name %>`."
 
   files: ->
-    @copy 'somefile.coffee', 'somefile.coffee'
+    # have Yeoman greet the user.
+    console.log @yeoman
 
-module.exports = <%= _.classify(generatorName) %>Generator
+    dirname = @_.dasherize @name
+
+    @copy 'somefile.coffee', "#{dirname}/somefile.coffee"
+
+module.exports = <%= _.classify(name) %>Generator

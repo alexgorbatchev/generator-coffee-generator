@@ -11,18 +11,15 @@ class SubGeneratorGenerator extends yeoman.generators.NamedBase
       @log.error 'You have to provide a name for the subgenerator.'
       process.exit 1
 
-    @generatorName = @name
-    @dirname = @_.dasherize @name
-
   templates: ->
     # have Yeoman greet the user.
     console.log @yeoman
 
-    dir = @generatorName
+    dirname = @_.dasherize @name
 
-    @copy 'index.js', "#{dir}/index.js"
-    @copy 'index.coffee', "#{dir}/index.coffee"
-    @copy 'templates/somefile.coffee', "#{dir}/templates/somefile.coffee"
-    @template 'test/subgenerator.spec.coffee', "test/#{@generatorName}.spec.coffee"
+    @copy 'index.js', "#{dirname}/index.js"
+    @copy 'index.coffee', "#{dirname}/index.coffee"
+    @copy 'templates/somefile.coffee', "#{dirname}/templates/somefile.coffee"
+    @template 'test/subgenerator.spec.coffee', "test/#{@name}.spec.coffee"
 
 module.exports = SubGeneratorGenerator

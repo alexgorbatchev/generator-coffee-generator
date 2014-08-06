@@ -9,7 +9,6 @@
   "bugs": "<%= githubUrl %>/<%= _.slugify(appname) %>/issues",
   "author": {
     "name": "<%= realname %>",
-    "email": "<%= email %>",
     "url": "<%= githubUrl %>"
   },
   "main": "app/index.js",

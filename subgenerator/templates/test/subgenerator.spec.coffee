@@ -1,25 +1,18 @@
 path = require 'path'
 helpers = require('yeoman-generator').test
 
-GENERATOR_NAME = '<%= generatorName %>'
+GENERATOR_NAME = '<%= name %>'
 DEST = path.join __dirname, '..', 'temp', "generator-#{GENERATOR_NAME}"
 
-describe '<%= generatorName %>', ->
-  beforeEach (done) ->
-    helpers.testDirectory DEST, (err) =>
-      return done(err) if err
+describe '<%= name %>', ->
+  before (done) ->
+    helpers
+      .run path.join __dirname, '..', GENERATOR_NAME
+      .inDir DEST
+      .withArguments ['mytest']
+      .on 'end', done
 
-      @app = helpers.createGenerator 'coffee-generator:<%= generatorName %>', ['../../<%= generatorName %>'], [GENERATOR_NAME]
-      done()
-
-  it 'creates expected files', (done) ->
-    expected = """
-      #{GENERATOR_NAME}/somefile.coffee
-    """.split /\s+/g
-
-    helpers.mockPrompt @app,
-      name: GENERATOR_NAME
-
-    @app.run {}, ->
-      helpers.assertFile expected
-      done()
+  it 'creates expected files', ->
+    helpers.assertFile '''
+      mytest/somefile.coffee
+    '''.split /\s+/g

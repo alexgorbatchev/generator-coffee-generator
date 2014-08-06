@@ -8,32 +8,22 @@ DEST = path.join __dirname, '..', 'temp', "generator-#{GENERATOR_NAME}"
 
 describe 'app', ->
   before (done) ->
-    helpers.testDirectory DEST, (err) =>
-      return done(err) if err
-      @app = helpers.createGenerator '<%= generatorName %>:app', ['../../app']
-      done()
+    helpers
+      .run path.join __dirname, '..', 'app'
+      .inDir DEST
+      .withOptions
+        realname: 'Alex Gorbatchev'
+        githubUrl: 'https://github.com/alexgorbatchev'
+      .withPrompt
+        githubUser: 'alexgorbatchev'
+        generatorName: GENERATOR_NAME
+      .on 'end', done
 
-  it 'creates expected files', (done) ->
-    # add files you expect to exist here.
-    expected = '''
+  it 'creates expected files', ->
+    helpers.assertFile '''
       .gitignore
       .travis.yml
       LICENSE
       README.md
       package.json
     '''.split /\s+/g
-
-    @app.options['skip-install'] = true
-
-    @app.userInfo = ->
-      @realname = 'Alex Gorbatchev';
-      @email = 'alex.gorbatchev@world.com';
-      @githubUrl = 'https://github.com/alexgorbatchev';
-
-    helpers.mockPrompt @app,
-      githubUser: 'alexgorbatchev'
-      generatorName: GENERATOR_NAME
-
-    @app.run {}, ->
-      helpers.assertFile expected
-      done()

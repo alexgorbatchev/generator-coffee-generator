@@ -20,6 +20,7 @@ githubUserInfo = (name, cb) ->
 class GeneratorCoffeeGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
     super
+    {@realname, @githubUrl} = options
     @currentYear = (new Date()).getFullYear()
     @on 'end', => @installDependencies skipInstall: options['skip-install']
     @pkg = JSON.parse @readFileAsString path.join __dirname, '../package.json'
@@ -48,11 +49,12 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
       done()
 
   userInfo: ->
+    return if @realname? and @githubUrl?
+
     done = @async()
 
     githubUserInfo @githubUser, (err, res) =>
       @realname = res.name
-      @email = res.email
       @githubUrl = res.html_url
       done()
 
