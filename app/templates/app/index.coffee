@@ -20,6 +20,7 @@ class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
   constructor: (args, options, config) ->
     super
     @currentYear = (new Date()).getFullYear()
+    {@realname, @githubUrl} = options
     @on 'end', => @installDependencies skipInstall: options['skip-install']
     @pkg = JSON.parse @readFileAsString path.join __dirname, '../package.json'
 
@@ -47,6 +48,8 @@ class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
       done()
 
   userInfo: ->
+    return if @realname? and @githubUrl?
+
     done = @async()
 
     githubUserInfo @githubUser, (err, res) =>

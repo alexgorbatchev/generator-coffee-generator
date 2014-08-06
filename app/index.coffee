@@ -74,7 +74,6 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
     @template 'app/index.coffee'
 
   templates: ->
-    @copy 'app/temp/_gitkeep', 'app/temp/.gitkeep'
     @copy 'app/templates/_package.json', 'app/templates/_package.json'
     @copy 'app/templates/_gitignore', 'app/templates/_gitignore'
     @copy 'app/templates/_travis.yml', 'app/templates/_travis.yml'

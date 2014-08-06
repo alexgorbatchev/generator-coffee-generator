@@ -29,7 +29,6 @@ describe 'coffee-generator', ->
         app/templates/_travis.yml
         app/templates/README.md
         app/templates/LICENSE
-        app/temp/.gitkeep
         package.json
         README.md
         LICENSE

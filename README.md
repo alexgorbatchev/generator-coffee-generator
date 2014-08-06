@@ -1,12 +1,13 @@
 # generator-coffee-generator
 
+[![GitTip](http://img.shields.io/gittip/alexgorbatchev.svg?style=flat)](https://www.gittip.com/alexgorbatchev/)
+[![Dependency status](http://img.shields.io/david/alexgorbatchev/generator-coffee-generator.svg?style=flat)](https://david-dm.org/alexgorbatchev/generator-coffee-generator)
+[![devDependency Status](http://img.shields.io/david/dev/alexgorbatchev/generator-coffee-generator.svg?style=flat)](https://david-dm.org/alexgorbatchev/generator-coffee-generator#info=devDependencies)
+[![Build Status](http://img.shields.io/travis/alexgorbatchev/generator-coffee-generator.svg?style=flat&branch=master)](https://travis-ci.org/alexgorbatchev/generator-coffee-generator)
+
+[![NPM](https://nodei.co/npm/generator-coffee-generator.svg?style=flat)](https://npmjs.org/package/generator-coffee-generator)
+
 [Yeoman](http://yeoman.io) generator that scaffolds out a new basic Yeoman generator with some sensible defaults written in CoffeeScript.
-
-[![Dependency status](https://david-dm.org/alexgorbatchev/generator-coffee-generator.png)](https://david-dm.org/alexgorbatchev/generator-coffee-generator)
-[![devDependency Status](https://david-dm.org/alexgorbatchev/generator-coffee-module/dev-status.png)](https://david-dm.org/alexgorbatchev/generator-coffee-module#info=devDependencies)
-[![Build Status](https://secure.travis-ci.org/alexgorbatchev/generator-coffee-generator.png?branch=master)](https://travis-ci.org/alexgorbatchev/generator-coffee-generator)
-
-[[NPM](https://nodei.co/npm/generator-coffee-module.png?downloads=true)](https://npmjs.org/package/generator-coffee-generator)
 
 ![](http://i.imgur.com/JHaAlBJ.png)
 
@@ -16,29 +17,20 @@ Please help me spend more time developing and maintaining awesome modules like t
 
 The absolute best thing to do is to sign up with [Gittip](http://gittip.com) if you haven't already and donate just $1 a week. That is roughly a cup of coffee per month. Also, please do donate to many other amazing open source projects!
 
-[![Gittip](http://img.shields.io/gittip/alexgorbatchev.png)](https://www.gittip.com/alexgorbatchev/)
-[![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PSDPM9268P8RW "Donate once-off to this project using Paypal")
+[![Gittip](http://img.shields.io/gittip/alexgorbatchev.png?style=flat)](https://www.gittip.com/alexgorbatchev/)
+[![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow&style=flat)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PSDPM9268P8RW "Donate once-off to this project using Paypal")
 
 ## Installing
 
     npm install -g generator-coffee-generator
 
-## Testing
+## Generators
 
-    npm test
-
-## Using
+### coffee-generator
 
     yo coffee-generator
 
-## Commands
-
-* `yo coffee-generator` shows a wizard for generating a new generator
-* `yo coffee-generator:subgenerator NAME` generates a subgenerator with the name NAME
-
-## What do you get?
-
-Scaffolds out a complete project directory structure for you:
+Shows a wizard for generating a new generator and generates the following in the current folder:
 
     .
     ├── app
@@ -46,24 +38,29 @@ Scaffolds out a complete project directory structure for you:
     │   ├── index.coffee
     │   └── templates
     │       └── _package.json
+    ├── test
+    |   ├── app.spec.coffee
+    |   └── mocha.opts
     ├── .gitignore
     ├── LICENSE
-    ├── package.json
     ├── README.md
+    └── package.json
+
+### coffee-generator:subgenerator NAME
+
+    yo coffee-generator:subgenerator NAME
+
+Generates a subgenerator with the name `NAME` in the current folder:
+
+    .
+    ├── NAME
+    │   └── index.coffee
     └── test
-        ├── app.spec.coffee
-        ├── load.spec.coffee
-        └── mocha.opts
+        └── NAME.spec.coffee
 
-## Other modules
+## Testing
 
-* [jade-compiler](https://github.com/alexgorbatchev/jade-compiler)
-* [stylus-compiler](https://github.com/alexgorbatchev/stylus-compiler)
-* [coffee-compiler](https://github.com/alexgorbatchev/coffee-compiler)
-* [coffee-errors](https://github.com/alexgorbatchev/coffee-errors)
-* [bubble-boy](https://github.com/alexgorbatchev/bubble-boy)
-* [syntaxhighlighter](https://github.com/alexgorbatchev/syntaxhighlighter)
-* [query-filter](https://github.com/alexgorbatchev/query-filter)
+    npm test
 
 ## License
 
