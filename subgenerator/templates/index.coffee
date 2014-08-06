@@ -3,7 +3,7 @@ yeoman = require 'yeoman-generator'
 
 class <%= _.classify(generatorName) %>Generator extends yeoman.generators.NamedBase
   constructor: (args, options, config) ->
-    console.log "You called the <%= generatorName %> subgenerator with the argument #{@name}."
+    console.log "Generating `#{@name}` based on `<%= generatorName %>`."
 
   files: ->
     @copy 'somefile.coffee', 'somefile.coffee'

@@ -14,15 +14,15 @@ class SubGeneratorGenerator extends yeoman.generators.NamedBase
     @generatorName = @name
     @dirname = @_.dasherize @name
 
-  template: ->
+  templates: ->
     # have Yeoman greet the user.
     console.log @yeoman
 
-    @mkdir @dirname
-    @mkdir "#{@dirname}/templates"
+    dir = @generatorName
 
-    @copy 'index.js', "#{@dirname}/index.js"
-    @copy 'index.coffee', "#{@dirname}/index.coffee"
-    @copy 'templates/somefile.coffee', "#{@dirname}/templates/somefile.coffee"
+    @copy 'index.js', "#{dir}/index.js"
+    @copy 'index.coffee', "#{dir}/index.coffee"
+    @copy 'templates/somefile.coffee', "#{dir}/templates/somefile.coffee"
+    @template 'test/subgenerator.spec.coffee', "test/#{@generatorName}.spec.coffee"
 
 module.exports = SubGeneratorGenerator

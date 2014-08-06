@@ -2,34 +2,20 @@ require 'coffee-errors'
 
 util = require 'util'
 path = require 'path'
+fs = require 'fs'
 url = require 'url'
 GitHubApi = require 'github'
 yeoman = require 'yeoman-generator'
 
 extractGeneratorName = (_, appname) ->
-  slugged = _.slugify(appname)
-  match = slugged.match(/^generator-(.+)/)
-  return match[1].toLowerCase()  if match and match.length is 2
+  slugged = _.slugify appname
+  match = slugged.match /^generator-(.+)/
+  return match[1].toLowerCase() if match and match.length is 2
   slugged
 
 githubUserInfo = (name, cb) ->
-  proxy = process.env.http_proxy or process.env.HTTP_PROXY or process.env.https_proxy or process.env.HTTPS_PROXY or null
-  githubOptions = version: '3.0.0'
-
-  if proxy
-    proxy = url.parse proxy
-
-    githubOptions.proxy =
-      host: proxy.hostname
-      port: proxy.port
-
-  github = new GitHubApi githubOptions
-
-  github.user.getFrom
-    user: name
-  , (err, res) ->
-    throw err  if err
-    cb JSON.parse JSON.stringify res
+  github = new GitHubApi version: '3.0.0'
+  github.user.getFrom user: name, cb
 
 class GeneratorCoffeeGenerator extends yeoman.generators.Base
   constructor: (args, options, config) ->
@@ -39,11 +25,11 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
     @pkg = JSON.parse @readFileAsString path.join __dirname, '../package.json'
 
   askFor: ->
-    done = @async()
-    generatorName = extractGeneratorName @_, @appname
-
     # have Yeoman greet the user.
     console.log @yeoman
+
+    done = @async()
+    generatorName = extractGeneratorName @_, @appname
 
     prompts = [
       name: 'githubUser'
@@ -64,7 +50,7 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
   userInfo: ->
     done = @async()
 
-    githubUserInfo @githubUser, (res) =>
+    githubUserInfo @githubUser, (err, res) =>
       @realname = res.name
       @email = res.email
       @githubUrl = res.html_url
@@ -77,7 +63,7 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
     @template 'LICENSE'
 
   gitfiles: ->
-    @copy 'gitignore', '.gitignore'
+    @copy '_gitignore', '.gitignore'
 
   app: ->
     @mkdir 'app'
@@ -86,11 +72,15 @@ class GeneratorCoffeeGenerator extends yeoman.generators.Base
     @template 'app/index.coffee'
 
   templates: ->
+    @copy 'app/temp/_gitkeep', 'app/temp/.gitkeep'
     @copy 'app/templates/_package.json', 'app/templates/_package.json'
+    @copy 'app/templates/_gitignore', 'app/templates/_gitignore'
+    @copy 'app/templates/_travis.yml', 'app/templates/_travis.yml'
+    @copy 'app/templates/LICENSE', 'app/templates/LICENSE'
+    @copy 'app/templates/README.md', 'app/templates/README.md'
 
   tests: ->
     @mkdir 'test'
-    @template 'test/load.spec.coffee', 'test/load.spec.coffee'
     @template 'test/app.spec.coffee', 'test/app.spec.coffee'
     @template 'test/mocha.opts', 'test/mocha.opts'
 

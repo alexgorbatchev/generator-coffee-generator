@@ -1,5 +1,34 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%%= _.slugify(appname) %>",
+  "version": "1.0.0",
+  "description": "Put some description here",
+  "keywords": [
+    "cool",
+    "module"
+  ],
+  "homepage": "<%%= githubUrl %>/<%%= _.slugify(appname) %>",
+  "bugs": "<%%= githubUrl %>/<%%= _.slugify(appname) %>/issues",
+  "author": {
+    "name": "<%%= realname %>",
+    "url": "<%%= githubUrl %>"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "<%%= githubUrl %>/<%%= _.slugify(appname) %>.git"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/*.spec.coffee"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "peerDependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "license": "MIT"
 }
