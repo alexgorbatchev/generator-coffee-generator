@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "yeoman-generator": "^0.17.2",
-    "github": "^0.1.12",
+    "github": "^0.2.4",
     "coffee-errors": "^0.8.5",
-    "coffee-script": "^1.7.1"
+    "coffee-script": "^1.10.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2"

@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "yeoman-generator": "^0.17.2",
-    "coffee-script": "^1.7.1"
+    "github": "^0.2.4",
+    "coffee-errors": "^0.8.6",
+    "coffee-script": "^1.10.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
