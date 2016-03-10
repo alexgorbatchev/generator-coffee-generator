@@ -1,15 +1,18 @@
 language: node_js
 node_js:
 - '5'
-before_install:
-- currentfolder=${PWD##*/}
-- if [ "$currentfolder" != 'generator-express-app' ]; then cd .. && eval "mv $currentfolder
-  generator-express-app" && cd generator-express-app; fi
+addons:
+  code_climate:
+    repo_token: "<REPO TOKEN GOES HERE>"
+before_script:
+- npm install -g codeclimate-test-reporter
+after_script:
+- codeclimate-test-reporter < coverage/lcov.info
 deploy:
   provider: npm
   email: serveradmin@octoblu.com
   api_key:
-    secure: Paq0cIDgHvyA3NwZQkwdBsOJzqwGsnFE9kddVqsio025PI5ghPqjfpoS+vVvgbqB0nvalGZNzbisln+LvfWJCRhLMvOP+R0uJIxkbysZHqgtLD8Q7agIiUh2ltYyR3vl81ZSSdbJGzo41Z7mSquH+gy6Ch34Mte2M2NC8Wa7+WaJ6uOrKFVrwvNeyZbOGgZxNJv6/cYpk84ti8cj9qAYTmVviQ4yi0jgojnaX0z9oeBnXeukjkkU46ugtC9AAkYt9cKNWn832R3dtrQInw1w/XI3TULsTAkGu7Tbz8cNJPbSMdRYMZD3G48gukjart6Y+sodlru8as9dsL27s3JU5DfqpTdnhJyr48qoonOU8obihwuajHHGR06CggAIjyqvtGiDcWoqo+gc2JYSw3aYmzE924qxekVI/CamT4WbmGZYBnwwl/y1RADLRG5eg1ZoojuEq6Uuue8vkxUwEs128wJVKQ8ge9kkCXG0W9nlWCZlkEGsM0hHTsyBUbHDB6mTKI4Osq1lQhI4syGtAT+c7bKHsdJ4u3xvBWAAT7+0mLT0ZsiCeXeFmA3PuaIBv7AB7lxQ2ZihFY31cx6SNOuHZ9PRr2pfY55BfAap7DFTcNlqstDGIHO0ypG00V3BsYtwWTkTZhsXNLYGdFC2QFoZOGtY9PiAsZPxIhKJ/dDi5Xs=
+    secure: 1wbxyNXIVMy/ctW0Wk2SXHnX3hz6C4kPYcMZrNi0yE1yob0abqfYuHNEYchTTtzqWXr+RHreKxu4kBEVMlpUQuEj2IcS9DEkVozPvhp5QftL53pD63nS4zYuYtBzVlrjYp7pc69nIn61Nxt9g5RRW+A6nDxT9rZWvJWDmUqeXXRJszdDd0EcgDu086+MPHBYdEiCqaTh8R/6KSRIOmK8TGFr836Uxi82MmBFCkQJzM1ExhG8hyxxh90gJ+st4irvQ6N7NCK9j7whMxDkyO/lS/NtyqAYwzDj8oAdBU7LEyzIwNRYGbarGTWVBnnU3FJJXvWwcV67SMBfI+Esvp8aoklefDnitL1GTevi4v/1APX3x9JeVozub7+WbYpXZ+SmpIBp2FxhjR4YM74CRdf0RDJCuGnepcKdmvLjR93KIEjRDibztpSvQP0NDIb4l70/lZ9NSgTtXF0EfT3QvWNiuwSr+J8NMlCQeCSzdnUiTtRN0zjR40CspbMBvME7e08HtFpVkaf3NUvNxA1/8pUEqEciegKPMbgktTYKSv07Mi5ZvdjWkXZWKX9G6E6f6Tm03wueQndR99pqukRBmjS53H0yQHsFsu3cP5s6YoMtM1zlCw0a64Cnoy7D9DRHxrXrA1TDu1rWp+HmLQT7CdUwEC8R2HR0yp4rvBXWUJMVxsU=
   on:
     tags: true
-    repo: octoblu/generator-coffee-generator
+    branches: true

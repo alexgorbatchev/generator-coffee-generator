@@ -46,18 +46,6 @@ Shows a wizard for generating a new generator and generates the following in the
     ├── README.md
     └── package.json
 
-### coffee-generator:subgenerator NAME
-
-    yo coffee-generator:subgenerator NAME
-
-Generates a subgenerator with the name `NAME` in the current folder:
-
-    .
-    ├── NAME
-    │   └── index.coffee
-    └── test
-        └── NAME.spec.coffee
-
 ## Testing
 
     npm test
