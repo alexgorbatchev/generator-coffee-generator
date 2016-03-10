@@ -34,7 +34,7 @@ class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
     prompts = [
       name: 'githubUser'
       message: 'Would you mind telling me your username on GitHub?'
-      default: 'someuser'
+      default: 'octoblu'
     ,
       name: 'generatorName'
       message: 'What\'s the base name of your generator?'
