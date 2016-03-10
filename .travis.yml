@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
 before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-express-app' ]; then cd .. && eval "mv $currentfolder generator-express-app" && cd generator-express-app; fi
-
+- currentfolder=${PWD##*/}
+- if [ "$currentfolder" != 'generator-express-app' ]; then cd .. && eval "mv $currentfolder
+  generator-express-app" && cd generator-express-app; fi
+deploy:
+  provider: npm
+  email: serveradmin@octoblu.com
+  api_key:
+    secure: Paq0cIDgHvyA3NwZQkwdBsOJzqwGsnFE9kddVqsio025PI5ghPqjfpoS+vVvgbqB0nvalGZNzbisln+LvfWJCRhLMvOP+R0uJIxkbysZHqgtLD8Q7agIiUh2ltYyR3vl81ZSSdbJGzo41Z7mSquH+gy6Ch34Mte2M2NC8Wa7+WaJ6uOrKFVrwvNeyZbOGgZxNJv6/cYpk84ti8cj9qAYTmVviQ4yi0jgojnaX0z9oeBnXeukjkkU46ugtC9AAkYt9cKNWn832R3dtrQInw1w/XI3TULsTAkGu7Tbz8cNJPbSMdRYMZD3G48gukjart6Y+sodlru8as9dsL27s3JU5DfqpTdnhJyr48qoonOU8obihwuajHHGR06CggAIjyqvtGiDcWoqo+gc2JYSw3aYmzE924qxekVI/CamT4WbmGZYBnwwl/y1RADLRG5eg1ZoojuEq6Uuue8vkxUwEs128wJVKQ8ge9kkCXG0W9nlWCZlkEGsM0hHTsyBUbHDB6mTKI4Osq1lQhI4syGtAT+c7bKHsdJ4u3xvBWAAT7+0mLT0ZsiCeXeFmA3PuaIBv7AB7lxQ2ZihFY31cx6SNOuHZ9PRr2pfY55BfAap7DFTcNlqstDGIHO0ypG00V3BsYtwWTkTZhsXNLYGdFC2QFoZOGtY9PiAsZPxIhKJ/dDi5Xs=
+  on:
+    tags: true
+    repo: octoblu/generator-coffee-generator
