@@ -1,13 +1,15 @@
 require 'coffee-errors'
 
-util = require 'util'
-path = require 'path'
-url = require 'url'
-GitHubApi = require 'github'
-yeoman = require 'yeoman-generator'
+_          = require 'lodash'
+util       = require 'util'
+path       = require 'path'
+url        = require 'url'
+GitHubApi  = require 'github'
+yeoman     = require 'yeoman-generator'
+HTMLWiring = require 'html-wiring'
 
-extractGeneratorName = (_, appname) ->
-  slugged = _.slugify appname
+extractGeneratorName = (appname) ->
+  slugged = _.kebabCase appname
   match = slugged.match /^generator-(.+)/
   return match[1].toLowerCase() if match and match.length is 2
   slugged
@@ -16,20 +18,17 @@ githubUserInfo = (name, cb) ->
   github = new GitHubApi version: '3.0.0'
   github.user.getFrom user: name, cb
 
-class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
+class <%= className %>Generator extends yeoman.Base
   constructor: (args, options, config) ->
     super
     @currentYear = (new Date()).getFullYear()
     {@realname, @githubUrl} = options
     @on 'end', => @installDependencies skipInstall: options['skip-install']
-    @pkg = JSON.parse @readFileAsString path.join __dirname, '../package.json'
+    @pkg = JSON.parse HTMLWiring.readFileAsString path.join __dirname, '../package.json'
 
   askFor: ->
-    # have Yeoman greet the user.
-    console.log @yeoman
-
     done = @async()
-    generatorName = extractGeneratorName @_, @appname
+    generatorName = extractGeneratorName @appname
 
     prompts = [
       name: 'githubUser'
@@ -45,6 +44,8 @@ class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
       @githubUser = props.githubUser
       @generatorName = props.generatorName
       @appname = 'generator-' + @generatorName
+      @appNameWithGenerator = _.kebabCase(@appname)
+      @className = _.upperFirst(_.camelCase(@generatorName))
       done()
 
   userInfo: ->
@@ -73,4 +74,4 @@ class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
 
   tests: ->
 
-module.exports = <%= _.classify(generatorName) %>Generator
+module.exports = <%= className %>Generator

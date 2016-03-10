@@ -1,12 +1,12 @@
 {
-  "name": "<%= _.slugify(appname) %>",
+  "name": "<%= appNameWithGenerator %>",
   "version": "1.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "<%= githubUrl %>/<%= _.slugify(appname) %>",
-  "bugs": "<%= githubUrl %>/<%= _.slugify(appname) %>/issues",
+  "homepage": "<%= githubUrl %>/<%= appNameWithGenerator %>",
+  "bugs": "<%= githubUrl %>/<%= appNameWithGenerator %>/issues",
   "author": {
     "name": "<%= realname %>",
     "url": "<%= githubUrl %>"
@@ -14,7 +14,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "<%= githubUrl %>/<%= _.slugify(appname) %>.git"
+    "url": "<%= githubUrl %>/<%= appNameWithGenerator %>.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/*.spec.coffee"
@@ -22,8 +22,13 @@
   "dependencies": {
     "yeoman-generator": "^0.22.5",
     "github": "^0.2.4",
+    "fs-extra": "^0.26.5",
     "coffee-errors": "^0.8.6",
-    "coffee-script": "^1.10.0"
+    "coffee-script": "^1.10.0",
+    "lodash": "^4.6.1",
+    "yeoman-test": "^1.1.0",
+    "yeoman-test": "^1.1.0",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "mocha": "^1.18.2",

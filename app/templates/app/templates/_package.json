@@ -1,13 +1,13 @@
 {
-  "name": "<%%= _.slugify(appname) %>",
+  "name": "<%%= generatorName %>",
   "version": "1.0.0",
   "description": "Put some description here",
   "keywords": [
     "cool",
     "module"
   ],
-  "homepage": "<%%= githubUrl %>/<%%= _.slugify(appname) %>",
-  "bugs": "<%%= githubUrl %>/<%%= _.slugify(appname) %>/issues",
+  "homepage": "<%%= githubUrl %>/<%%= generatorName %>",
+  "bugs": "<%%= githubUrl %>/<%%= generatorName %>/issues",
   "author": {
     "name": "<%%= realname %>",
     "url": "<%%= githubUrl %>"
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "<%%= githubUrl %>/<%%= _.slugify(appname) %>.git"
+    "url": "<%%= githubUrl %>/<%%= generatorName %>.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/*.spec.coffee"

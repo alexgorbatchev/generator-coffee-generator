@@ -1,26 +1,27 @@
-path = require 'path'
-fs = require 'fs'
-{exec} = require 'child_process'
-helpers = require('yeoman-generator').test
+path    = require 'path'
+fs      = require 'fs-extra'
+helpers = require 'yeoman-test'
+assert  = require 'yeoman-assert'
 
 GENERATOR_NAME = 'app'
-DEST = path.join __dirname, '..', 'temp', "generator-#{GENERATOR_NAME}"
+DEST = path.join __dirname, '..', 'tmp', "generator-#{GENERATOR_NAME}"
 
 describe 'app', ->
   before (done) ->
     helpers
       .run path.join __dirname, '..', 'app'
-      .inDir DEST
+      .inTmpDir (dir) =>
+        fs.copySync(DEST, dir)
       .withOptions
         realname: 'Alex Gorbatchev'
         githubUrl: 'https://github.com/alexgorbatchev'
-      .withPrompt
+      .withPrompts
         githubUser: 'alexgorbatchev'
         generatorName: GENERATOR_NAME
       .on 'end', done
 
   it 'creates expected files', ->
-    helpers.assertFile '''
+    assert.file '''
       .gitignore
       .travis.yml
       LICENSE

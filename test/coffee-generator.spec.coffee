@@ -1,27 +1,33 @@
-path = require 'path'
-fs = require 'fs'
-{exec} = require 'child_process'
-helpers = require('yeoman-generator').test
+path       = require 'path'
+fs         = require 'fs-extra'
+{execSync} = require 'child_process'
+helpers    = require 'yeoman-test'
+assert     = require 'yeoman-assert'
 
-GENERATOR_NAME = 'app'
-DEST = path.join __dirname, '..', 'temp', "generator-#{GENERATOR_NAME}"
+GENERATOR_NAME = 'app-service'
+DEST           = path.join __dirname, '..', 'tmp', "generator-#{GENERATOR_NAME}"
 
 describe 'coffee-generator', ->
-  describe 'app', ->
+  beforeEach (done) ->
+    console.log 'mkdirs', DEST
+    fs.mkdirs DEST, done
+
+  describe 'app-service', ->
     before (done) ->
       helpers
         .run path.join __dirname, '..', 'app'
-        .inDir DEST
+        .inTmpDir (dir) =>
+          fs.copySync DEST, dir
         .withOptions
-          realname: 'Alex Gorbatchev'
-          githubUrl: 'https://github.com/alexgorbatchev'
-        .withPrompt
-          githubUser: 'alexgorbatchev'
+          realname: 'Octoblu, Inc'
+          githubUrl: 'https://github.com/octoblu'
+        .withPrompts
+          githubUser: 'octoblu'
           generatorName: GENERATOR_NAME
         .on 'end', done
 
     it 'creates expected files', ->
-      helpers.assertFile '''
+      assert.file '''
         app/index.coffee
         app/index.js
         app/templates/_gitignore
@@ -41,7 +47,8 @@ describe 'coffee-generator', ->
       helpers
         .run path.join __dirname, '..', 'subgenerator'
         .withArguments ['mygen']
-        .on 'ready', -> process.chdir DEST
+        .on 'ready', ->
+          process.chdir DEST
         .on 'end', done
 
     it 'creates expected files', ->
@@ -52,12 +59,10 @@ describe 'coffee-generator', ->
         test/mygen.spec.coffee
       """.split /\s+/g
 
-      helpers.assertFile expected
+      assert.file expected
 
   describe 'testing produces generators', ->
-    it 'can run npm test', (done) ->
+    it 'can run npm test', ->
       fs.symlinkSync "#{__dirname}/../node_modules", "#{DEST}/node_modules"
 
-      exec 'npm test', cwd: DEST, (err, stdout, stderr) ->
-        console.log stdout.replace /^/gm, '        > '
-        done err
+      execSync 'npm test', cwd: DEST

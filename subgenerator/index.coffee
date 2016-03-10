@@ -1,21 +1,23 @@
 require 'coffee-errors'
 
-util = require 'util'
+_      = require 'lodash'
+util   = require 'util'
 yeoman = require 'yeoman-generator'
 
-class SubGeneratorGenerator extends yeoman.generators.NamedBase
+class SubGeneratorGenerator extends yeoman.Base
   constructor: ->
     super
+
+    @argument 'name', { type: String, required: true }
 
     unless @name?
       @log.error 'You have to provide a name for the subgenerator.'
       process.exit 1
 
-  templates: ->
-    # have Yeoman greet the user.
-    console.log @yeoman
+    @className = _.upperFirst(_.camelCase(@name))
 
-    dirname = @_.dasherize @name
+  templates: ->
+    dirname = _.kebabCase @name
 
     @copy 'index.js', "#{dirname}/index.js"
     @copy 'index.coffee', "#{dirname}/index.coffee"
