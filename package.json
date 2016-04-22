@@ -1,6 +1,6 @@
 {
   "name": "@octoblu/generator-coffee-generator",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "CoffeeScript Generator generator for Yeoman",
   "keywords": [
     "yeoman-generator",
@@ -23,21 +23,21 @@
   "dependencies": {
     "coffee-errors": "^0.8.5",
     "coffee-script": "^1.10.0",
-    "fs-extra": "^0.26.5",
+    "fs-extra": "^0.28.0",
     "github": "^0.2.4",
     "html-wiring": "^1.2.0",
-    "lodash": "^4.6.1",
+    "lodash": "^4.11.1",
     "mkdirp": "^0.5.1",
-    "yeoman-assert": "^2.1.1",
-    "yeoman-generator": "^0.22.5",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-generator": "^0.22.6",
     "yeoman-test": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "coffee-coverage": "^1.0.1",
     "coffee-script": "^1.10.0",
-    "istanbul": "^0.4.2",
-    "mocha": "^1.21.5",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
     "mocha-istanbul": "^0.2.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
