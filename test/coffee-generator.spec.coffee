@@ -11,12 +11,10 @@ DEST           = path.join __dirname, '..', 'tmp', "generator-#{GENERATOR_NAME}"
 
 describe 'coffee-generator', ->
   before 'mkdirs', (done) ->
-    @timeout 5000
     fs.mkdirs DEST, done
 
   describe 'app-service', ->
     before 'app-service', (done) ->
-      @timeout 5000
       helpers
         .run path.join __dirname, '..', 'app'
         .inDir DEST
