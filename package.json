@@ -1,6 +1,6 @@
 {
   "name": "@octoblu/generator-coffee-generator",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "CoffeeScript Generator generator for Yeoman",
   "keywords": [
     "yeoman-generator",
