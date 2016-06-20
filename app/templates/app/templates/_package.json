@@ -1,13 +1,13 @@
 {
-  "name": "<%%= _.slugify(appname) %>",
+  "name": "<%%= appname %>",
   "version": "1.0.0",
   "description": "Put some description here",
   "keywords": [
     "cool",
     "module"
   ],
-  "homepage": "<%%= githubUrl %>/<%%= _.slugify(appname) %>",
-  "bugs": "<%%= githubUrl %>/<%%= _.slugify(appname) %>/issues",
+  "homepage": "<%%= githubUrl %>/<%%= appname %>",
+  "bugs": "<%%= githubUrl %>/<%%= appname %>/issues",
   "author": {
     "name": "<%%= realname %>",
     "url": "<%%= githubUrl %>"
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "<%%= githubUrl %>/<%%= _.slugify(appname) %>.git"
+    "url": "<%%= githubUrl %>/<%%= appname %>.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/*.spec.coffee"
@@ -27,8 +27,8 @@
   "peerDependencies": {
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
   },
   "license": "MIT"
 }

@@ -1,12 +1,12 @@
 {
-  "name": "<%= _.slugify(appname) %>",
+  "name": "<%= appNameWithGenerator %>",
   "version": "1.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "<%= githubUrl %>/<%= _.slugify(appname) %>",
-  "bugs": "<%= githubUrl %>/<%= _.slugify(appname) %>/issues",
+  "homepage": "<%= githubUrl %>/<%= appNameWithGenerator %>",
+  "bugs": "<%= githubUrl %>/<%= appNameWithGenerator %>/issues",
   "author": {
     "name": "<%= realname %>",
     "url": "<%= githubUrl %>"
@@ -14,25 +14,31 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "<%= githubUrl %>/<%= _.slugify(appname) %>.git"
+    "url": "<%= githubUrl %>/<%= appNameWithGenerator %>.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/*.spec.coffee"
   },
   "dependencies": {
-    "yeoman-generator": "^0.17.2",
-    "coffee-script": "^1.7.1"
+    "coffee-errors": "^0.8.6",
+    "coffee-script": "^1.10.0",
+    "github": "^1.2.0",
+    "html-wiring": "^1.2.0",
+    "lodash": "^4.13.1",
+    "yeoman-generator": "^0.23.4"
   },
   "devDependencies": {
-    "mocha": "^1.18.2",
-    "rimraf": "^2.2.8"
+    "mocha": "^2.4.5",
+    "rimraf": "^2.2.8",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.4.0"
   },
   "peerDependencies": {
-    "yo": "^1.0.0"
+    "yo": "^1.8.4"
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
   },
   "license": "MIT"
 }

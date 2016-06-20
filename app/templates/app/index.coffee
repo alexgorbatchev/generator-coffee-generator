@@ -1,76 +1,69 @@
 require 'coffee-errors'
 
-util = require 'util'
-path = require 'path'
-url = require 'url'
-GitHubApi = require 'github'
-yeoman = require 'yeoman-generator'
+htmlWiring = require 'html-wiring'
+_          = require 'lodash'
+path       = require 'path'
+yeoman     = require 'yeoman-generator'
 
-extractGeneratorName = (_, appname) ->
-  slugged = _.slugify appname
-  match = slugged.match /^generator-(.+)/
-  return match[1].toLowerCase() if match and match.length is 2
-  slugged
+helpers    = require './helpers'
 
-githubUserInfo = (name, cb) ->
-  github = new GitHubApi version: '3.0.0'
-  github.user.getFrom user: name, cb
-
-class <%= _.classify(generatorName) %>Generator extends yeoman.generators.Base
-  constructor: (args, options, config) ->
+class <%= className %>Generator extends yeoman.Base
+  constructor: (args, options) ->
     super
+    @option 'github-user'
     @currentYear = (new Date()).getFullYear()
     {@realname, @githubUrl} = options
-    @on 'end', => @installDependencies skipInstall: options['skip-install']
-    @pkg = JSON.parse @readFileAsString path.join __dirname, '../package.json'
+    @skipInstall = options['skip-install']
+    @githubUser  = options['github-user']
+    @pkg = JSON.parse htmlWiring.readFileAsString path.join __dirname, '../package.json'
 
-  askFor: ->
-    # have Yeoman greet the user.
-    console.log @yeoman
+  initializing: =>
+    @appname = _.kebabCase @appname
 
+  prompting: =>
+    return if @githubUser?
     done = @async()
-    generatorName = extractGeneratorName @_, @appname
 
     prompts = [
       name: 'githubUser'
       message: 'Would you mind telling me your username on GitHub?'
-      default: 'someuser'
-    ,
-      name: 'generatorName'
-      message: 'What\'s the base name of your generator?'
-      default: generatorName
+      default: 'octoblu'
     ]
 
-    @prompt prompts, (props) =>
+    @prompt(prompts).then (props) =>
       @githubUser = props.githubUser
-      @generatorName = props.generatorName
-      @appname = 'generator-' + @generatorName
       done()
 
-  userInfo: ->
+  userInfo: =>
     return if @realname? and @githubUrl?
 
     done = @async()
 
-    githubUserInfo @githubUser, (err, res) =>
+    console.log 'here'
+    helpers.githubUserInfo @githubUser, (error, res) =>
+      console.log "not 'here'"
+      @env.error error if error?
       @realname = res.name
       @email = res.email
       @githubUrl = res.html_url
       done()
 
-  projectfiles: ->
-    @template '_package.json', 'package.json'
-    @template '_travis.yml', '.travis.yml'
-    @template 'README.md'
-    @template 'LICENSE'
-
-  gitfiles: ->
+  configuring: =>
     @copy '_gitignore', '.gitignore'
 
-  app: ->
+  writing: =>
+    context = {@appname, @githubUrl, @realname}
 
-  templates: ->
+    @template '_package.json', 'package.json', context
+    @template '_travis.yml', '.travis.yml', context
+    @template '_README.md', 'README.md', context
+    @template '_LICENSE', 'LICENSE', context
 
-  tests: ->
+  install: =>
+    return if @skipInstall
+    @installDependencies npm: true, bower: false
 
-module.exports = <%= _.classify(generatorName) %>Generator
+  end: =>
+    return if @skipInstall
+
+module.exports = <%= className %>Generator

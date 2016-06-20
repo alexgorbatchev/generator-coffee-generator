@@ -1,10 +1,10 @@
 # <%= appname %>
 
-[![Dependency status](http://img.shields.io/david/<%= githubUser %>/<%= _.slugify(appname) %>.svg?style=flat)](https://david-dm.org/<%= githubUser %>/<%= _.slugify(appname) %>)
-[![devDependency Status](http://img.shields.io/david/dev/<%= githubUser %>/<%= _.slugify(appname) %>.svg?style=flat)](https://david-dm.org/<%= githubUser %>/<%= _.slugify(appname) %>#info=devDependencies)
-[![Build Status](http://img.shields.io/travis/<%= githubUser %>/<%= _.slugify(appname) %>.svg?style=flat&branch=master)](https://travis-ci.org/<%= githubUser %>/<%= _.slugify(appname) %>)
+[![Dependency status](http://img.shields.io/david/<%= githubUser %>/<%= appNameWithGenerator %>.svg?style=flat)](https://david-dm.org/<%= githubUser %>/<%= appNameWithGenerator %>)
+[![devDependency Status](http://img.shields.io/david/dev/<%= githubUser %>/<%= appNameWithGenerator %>.svg?style=flat)](https://david-dm.org/<%= githubUser %>/<%= appNameWithGenerator %>#info=devDependencies)
+[![Build Status](http://img.shields.io/travis/<%= githubUser %>/<%= appNameWithGenerator %>.svg?style=flat&branch=master)](https://travis-ci.org/<%= githubUser %>/<%= appNameWithGenerator %>)
 
-[![NPM](https://nodei.co/npm/<%= _.slugify(appname) %>.svg?style=flat)](https://npmjs.org/package/<%= _.slugify(appname) %>)
+[![NPM](https://nodei.co/npm/<%= appNameWithGenerator %>.svg?style=flat)](https://npmjs.org/package/<%= appNameWithGenerator %>)
 
 A generator for [Yeoman](http://yeoman.io).
 
@@ -31,13 +31,13 @@ Yeoman travels light. He didn't pack any generators when he moved in. You can th
 To install <%= appname %> from npm, run:
 
 ```
-$ npm install -g <%= _.slugify(appname) %>
+$ npm install -g <%= appNameWithGenerator %>
 ```
 
 Finally, initiate the generator:
 
 ```
-$ yo <%= generatorName %>
+$ yo <%= appNameWithGenerator %>
 ```
 
 ### Getting To Know Yeoman
@@ -60,13 +60,13 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

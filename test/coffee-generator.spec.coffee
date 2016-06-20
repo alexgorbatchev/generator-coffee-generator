@@ -1,63 +1,48 @@
-path = require 'path'
-fs = require 'fs'
-{exec} = require 'child_process'
-helpers = require('yeoman-generator').test
+{before, describe, it} = global
 
-GENERATOR_NAME = 'app'
-DEST = path.join __dirname, '..', 'temp', "generator-#{GENERATOR_NAME}"
+path       = require 'path'
+fs         = require 'fs-extra'
+{execSync} = require 'child_process'
+helpers    = require 'yeoman-test'
+assert     = require 'yeoman-assert'
+
+GENERATOR_NAME = 'app-service'
+DEST           = path.join __dirname, '..', 'tmp', "generator-#{GENERATOR_NAME}"
 
 describe 'coffee-generator', ->
-  describe 'app', ->
-    before (done) ->
+  before 'mkdirs', (done) ->
+    fs.mkdirs DEST, done
+
+  describe 'app-service', ->
+    before 'app-service', (done) ->
       helpers
         .run path.join __dirname, '..', 'app'
         .inDir DEST
         .withOptions
-          realname: 'Alex Gorbatchev'
-          githubUrl: 'https://github.com/alexgorbatchev'
-        .withPrompt
-          githubUser: 'alexgorbatchev'
+          realname: 'Octoblu, Inc'
+          githubUrl: 'https://github.com/octoblu'
+        .withPrompts
+          githubUser: 'octoblu'
           generatorName: GENERATOR_NAME
         .on 'end', done
 
     it 'creates expected files', ->
-      helpers.assertFile '''
-        app/index.coffee
-        app/index.js
-        app/templates/_gitignore
-        app/templates/_package.json
-        app/templates/_travis.yml
-        app/templates/README.md
-        app/templates/LICENSE
-        package.json
-        README.md
-        LICENSE
-        .travis.yml
-        .gitignore
-      '''.split /\s+/g
+      assert.file([
+        'app/index.coffee'
+        'app/index.js'
+        'app/templates/_gitignore'
+        'app/templates/_package.json'
+        'app/templates/_travis.yml'
+        'app/templates/_README.md'
+        'app/templates/_LICENSE'
+        'package.json'
+        'README.md'
+        'LICENSE'
+        '.travis.yml'
+        '.gitignore'
+      ])
 
-  describe 'subgenerator', ->
-    before (done) ->
-      helpers
-        .run path.join __dirname, '..', 'subgenerator'
-        .withArguments ['mygen']
-        .on 'ready', -> process.chdir DEST
-        .on 'end', done
-
-    it 'creates expected files', ->
-      expected = """
-        mygen/index.coffee
-        mygen/index.js
-        mygen/templates/somefile.coffee
-        test/mygen.spec.coffee
-      """.split /\s+/g
-
-      helpers.assertFile expected
-
-  describe 'testing produces generators', ->
-    it 'can run npm test', (done) ->
-      fs.symlinkSync "#{__dirname}/../node_modules", "#{DEST}/node_modules"
-
-      exec 'npm test', cwd: DEST, (err, stdout, stderr) ->
-        console.log stdout.replace /^/gm, '        > '
-        done err
+    describe 'testing produces generators', ->
+      it 'can run npm test', ->
+        fs.symlinkSync "#{__dirname}/../node_modules", "#{DEST}/node_modules"
+        execSync 'npm test', cwd: DEST

@@ -1,7 +1,11 @@
 language: node_js
 node_js:
-  - '0.10'
-before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-express-app' ]; then cd .. && eval "mv $currentfolder generator-express-app" && cd generator-express-app; fi
-
+- '5'
+deploy:
+  provider: npm
+  email: serveradmin@octoblu.com
+  api_key:
+    secure: 1wbxyNXIVMy/ctW0Wk2SXHnX3hz6C4kPYcMZrNi0yE1yob0abqfYuHNEYchTTtzqWXr+RHreKxu4kBEVMlpUQuEj2IcS9DEkVozPvhp5QftL53pD63nS4zYuYtBzVlrjYp7pc69nIn61Nxt9g5RRW+A6nDxT9rZWvJWDmUqeXXRJszdDd0EcgDu086+MPHBYdEiCqaTh8R/6KSRIOmK8TGFr836Uxi82MmBFCkQJzM1ExhG8hyxxh90gJ+st4irvQ6N7NCK9j7whMxDkyO/lS/NtyqAYwzDj8oAdBU7LEyzIwNRYGbarGTWVBnnU3FJJXvWwcV67SMBfI+Esvp8aoklefDnitL1GTevi4v/1APX3x9JeVozub7+WbYpXZ+SmpIBp2FxhjR4YM74CRdf0RDJCuGnepcKdmvLjR93KIEjRDibztpSvQP0NDIb4l70/lZ9NSgTtXF0EfT3QvWNiuwSr+J8NMlCQeCSzdnUiTtRN0zjR40CspbMBvME7e08HtFpVkaf3NUvNxA1/8pUEqEciegKPMbgktTYKSv07Mi5ZvdjWkXZWKX9G6E6f6Tm03wueQndR99pqukRBmjS53H0yQHsFsu3cP5s6YoMtM1zlCw0a64Cnoy7D9DRHxrXrA1TDu1rWp+HmLQT7CdUwEC8R2HR0yp4rvBXWUJMVxsU=
+  on:
+    tags: true
+    branches: true

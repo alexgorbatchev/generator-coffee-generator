@@ -1,25 +1,3 @@
-# <%= appname %>
-
-[![Dependency status](http://img.shields.io/david/<%= githubUser %>/<%= appNameWithGenerator %>.svg?style=flat)](https://david-dm.org/<%= githubUser %>/<%= appNameWithGenerator %>)
-[![devDependency Status](http://img.shields.io/david/dev/<%= githubUser %>/<%= appNameWithGenerator %>.svg?style=flat)](https://david-dm.org/<%= githubUser %>/<%= appNameWithGenerator %>#info=devDependencies)
-[![Build Status](http://img.shields.io/travis/<%= githubUser %>/<%= appNameWithGenerator %>.svg?style=flat&branch=master)](https://travis-ci.org/<%= githubUser %>/<%= appNameWithGenerator %>)
-
-[![NPM](https://nodei.co/npm/<%= appNameWithGenerator %>.svg?style=flat)](https://npmjs.org/package/<%= appNameWithGenerator %>)
-
-## Installing
-
-```bash
-$ npm install <%= appname %>
-```
-
-### Usage
-
-```javascript
-console.log('hello world!');
-```
-
-## License
-
 The MIT License (MIT)
 
 Copyright <%= currentYear %> <%= realname %>
