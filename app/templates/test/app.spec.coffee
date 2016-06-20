@@ -1,3 +1,5 @@
+{before, describe, it} = global
+
 path    = require 'path'
 fs      = require 'fs-extra'
 helpers = require 'yeoman-test'

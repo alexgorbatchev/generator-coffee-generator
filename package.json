@@ -21,16 +21,14 @@
     "test": "mocha"
   },
   "dependencies": {
-    "coffee-errors": "^0.8.5",
+    "coffee-errors": "^0.8.6",
     "coffee-script": "^1.10.0",
     "fs-extra": "^0.28.0",
-    "github": "^0.2.4",
+    "github": "^1.2.0",
     "html-wiring": "^1.2.0",
-    "lodash": "^4.11.1",
+    "lodash": "^4.13.1",
     "mkdirp": "^0.5.1",
-    "yeoman-assert": "^2.2.1",
-    "yeoman-generator": "^0.22.6",
-    "yeoman-test": "^1.1.0"
+    "yeoman-generator": "^0.23.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -39,8 +37,11 @@
     "istanbul": "^0.4.3",
     "mocha": "^2.4.5",
     "mocha-istanbul": "^0.2.0",
+    "rimraf": "^2.2.8",
     "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.1.0"
   },
   "peerDependencies": {
     "yo": ">=1.7.0"

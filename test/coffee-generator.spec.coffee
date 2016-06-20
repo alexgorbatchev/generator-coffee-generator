@@ -1,3 +1,5 @@
+{before, describe, it} = global
+
 path       = require 'path'
 fs         = require 'fs-extra'
 {execSync} = require 'child_process'
@@ -8,11 +10,13 @@ GENERATOR_NAME = 'app-service'
 DEST           = path.join __dirname, '..', 'tmp', "generator-#{GENERATOR_NAME}"
 
 describe 'coffee-generator', ->
-  before (done) ->
+  before 'mkdirs', (done) ->
+    @timeout 5000
     fs.mkdirs DEST, done
 
   describe 'app-service', ->
-    before (done) ->
+    before 'app-service', (done) ->
+      @timeout 5000
       helpers
         .run path.join __dirname, '..', 'app'
         .inDir DEST
@@ -31,8 +35,8 @@ describe 'coffee-generator', ->
         'app/templates/_gitignore'
         'app/templates/_package.json'
         'app/templates/_travis.yml'
-        'app/templates/README.md'
-        'app/templates/LICENSE'
+        'app/templates/_README.md'
+        'app/templates/_LICENSE'
         'package.json'
         'README.md'
         'LICENSE'
@@ -40,8 +44,7 @@ describe 'coffee-generator', ->
         '.gitignore'
       ])
 
-  describe 'testing produces generators', ->
-    it 'can run npm test', ->
-      fs.symlinkSync "#{__dirname}/../node_modules", "#{DEST}/node_modules"
-
-      execSync 'npm test', cwd: DEST
+    describe 'testing produces generators', ->
+      it 'can run npm test', ->
+        fs.symlinkSync "#{__dirname}/../node_modules", "#{DEST}/node_modules"
+        execSync 'npm test', cwd: DEST

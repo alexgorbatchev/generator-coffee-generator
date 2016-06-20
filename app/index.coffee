@@ -10,18 +10,16 @@ yeoman     = require 'yeoman-generator'
 HTMLWiring = require 'html-wiring'
 mkdirp     = require 'mkdirp'
 
+helpers    = require './helpers'
+
 extractGeneratorName = (appname) ->
   slugged = _.kebabCase appname
   match = slugged.match /^generator-(.+)/
   return match[1].toLowerCase() if match and match.length is 2
   slugged
 
-githubUserInfo = (name, cb) ->
-  github = new GitHubApi version: '3.0.0'
-  github.user.getFrom user: name, cb
-
 class GeneratorCoffeeGenerator extends yeoman.Base
-  constructor: (args, options, config) ->
+  constructor: (args, options) ->
     super
     {@realname, @githubUrl} = options
     @currentYear = (new Date()).getFullYear()
@@ -42,7 +40,7 @@ class GeneratorCoffeeGenerator extends yeoman.Base
       default: generatorName
     ]
 
-    @prompt prompts, (props) =>
+    @prompt(prompts).then (props) =>
       @githubUser = props.githubUser
       @generatorName = props.generatorName
       @appname = 'generator-' + @generatorName
@@ -55,7 +53,7 @@ class GeneratorCoffeeGenerator extends yeoman.Base
 
     done = @async()
 
-    githubUserInfo @githubUser, (err, res) =>
+    helpers.githubUserInfo @githubUser, (err, res) =>
       @realname = res.name
       @githubUrl = res.html_url
       done()
@@ -63,8 +61,8 @@ class GeneratorCoffeeGenerator extends yeoman.Base
   projectfiles: ->
     @template '_package.json', 'package.json'
     @template '_travis.yml', '.travis.yml'
-    @template 'README.md'
-    @template 'LICENSE'
+    @template '_README.md', 'README.md'
+    @template '_LICENSE', 'LICENSE'
 
   gitfiles: ->
     @copy '_gitignore', '.gitignore'
@@ -74,13 +72,14 @@ class GeneratorCoffeeGenerator extends yeoman.Base
     mkdirp 'app/templates'
     @template 'app/index.js'
     @template 'app/index.coffee'
+    @template 'app/helpers.coffee'
 
   templates: ->
     @copy 'app/templates/_package.json', 'app/templates/_package.json'
     @copy 'app/templates/_gitignore', 'app/templates/_gitignore'
     @copy 'app/templates/_travis.yml', 'app/templates/_travis.yml'
-    @copy 'app/templates/LICENSE', 'app/templates/LICENSE'
-    @copy 'app/templates/README.md', 'app/templates/README.md'
+    @copy 'app/templates/_LICENSE', 'app/templates/_LICENSE'
+    @copy 'app/templates/_README.md', 'app/templates/_README.md'
 
   tests: ->
     mkdirp 'test'
